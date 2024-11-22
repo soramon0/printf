@@ -11,9 +11,23 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include <stdio.h>
 
-int	ft_printf(const char *args, ...)
+int	ft_printf(const char *format, ...)
 {
-	(void)args;
+	va_list	args;
+
+	va_start(args, format);
+	va_end(args);
+	return (0);
+}
+
+int main()
+{
+	int val = 5;
+	int bytes = ft_printf("Hello %d\n", val);
+	printf("Wrote %d\n", bytes);
+	bytes = printf("Hello %d\n", val);
+	printf("Wrote %d\n", bytes);
 	return (0);
 }
