@@ -106,8 +106,3 @@ int	ft_putunbr_fd(unsigned int n, int fd)
 		return (1);
 	}
 }
-
-int	ft_puthex_fd(int n, int casing, int fd)
-{
-	return (ft_putnbr_fd(n, fd));
-}

@@ -16,13 +16,12 @@
 # include "stdarg.h"
 # include <unistd.h>
 
-int		ft_printf(const char *, ...);
+int		ft_printf(const char *format, ...);
 void	ft_putchar_fd(char c, int fd);
 int		ft_putnbr_fd(int n, int fd);
 int		ft_putunbr_fd(unsigned int n, int fd);
-int		ft_puthex_fd(int n, int casing, int fd);
 int		ft_putstr_fd(char *s, int fd);
 char	*ft_strchr(const char *s, int c);
-int	ft_putnbr_base(int n, char *base, int baselen);
+int		ft_putnbr_base(int n, char *base, int baselen);
 
 #endif
