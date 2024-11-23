@@ -13,8 +13,12 @@
 #ifndef PRINTF_H
 # define PRINTF_H
 
-#include "stdarg.h"
+# include "stdarg.h"
+# include <unistd.h>
 
-int	ft_printf(const char *, ...);
+int		ft_printf(const char *, ...);
+void	ft_putchar_fd(char c, int fd);
+int ft_putnbr_fd(int n, int fd);
+char	*ft_strchr(const char *s, int c);
 
 #endif

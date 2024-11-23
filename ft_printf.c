@@ -12,69 +12,67 @@
 
 #include "printf.h"
 #include <stdio.h>
-#include <unistd.h>
 
-void	ft_putchar_fd(char c, int fd)
+static int	process(va_list args, char **format, char specifier)
 {
-	write(fd, &c, 1);
-}
+	int	bytes;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	long	num;
-
-	num = n;
-	if (num < 0)
+	bytes = 0;
+	if (specifier == '%' && ++bytes)
 	{
-		ft_putchar_fd('-', fd);
-		num *= -1;
+		ft_putchar_fd('%', 1);
 	}
-	if (num > 9)
+	else if (specifier == 'd')
 	{
-		ft_putnbr_fd(num / 10, fd);
-		ft_putchar_fd(num % 10 + '0', fd);
+		bytes += ft_putnbr_fd(va_arg(args, int), 1);
 	}
-	else
-		ft_putchar_fd(num + '0', fd);
+	else if (specifier == 'c' && ++bytes)
+	{
+		ft_putchar_fd(va_arg(args, int), 1);
+	}
+	*format += 2;
+	return (bytes);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	size_t	i;
+	int		bytes;
+	char	*specifier;
+	char	*s;
 
+	bytes = 0;
+	s = (char *)format;
 	va_start(args, format);
-	i = 0;
-	while (format[i])
+	while (*s)
 	{
-		if (format[i] == '%' && format[i + 1])
+		if (*s != '%' && ++bytes)
 		{
-			if (format[i + 1] == '%')
-			{
-				write(1, &format[i + 1], 1);
-				i += 2;
-			}
-			if (format[i + 1] == 'd')
-			{
-				int d = (int)va_arg(args, int);
-				ft_putnbr_fd(d, 1);
-				i += 2;
-			}
+			write(1, s++, 1);
+			continue ;
 		}
-		write(1, &format[i], 1);
-		i++;
+		specifier = ft_strchr("cspdiuxX%", *(s + 1));
+		if (!specifier && ++bytes && ++s)
+			write(1, "%", 1);
+		else
+			bytes += process(args, &s, *specifier);
 	}
 	va_end(args);
-	return (i);
+	return (bytes);
 }
 
-int main()
+int	main(void)
 {
-	size_t val = 5;
-	char *format = "Hello %zu\n";
-	int bytes = ft_printf(format, val);
-	printf("Wrote %d\n", bytes);
-	bytes = printf(format, val);
-	printf("Wrote %d\n", bytes);
+	int		val;
+	char	*format;
+	size_t	bytes;
+
+	val = 69;
+	format = "Value is '%c'\n";
+	bytes = ft_printf(format, NULL);
+	printf("Wrote %zu bytes\n", bytes);
+	printf("------------------\n");
+	bytes = printf(format, NULL);
+	printf("Wrote %zu bytes\n", bytes);
 	return (0);
 }
