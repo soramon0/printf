@@ -19,17 +19,19 @@ static int	process(va_list args, char **format, char specifier)
 
 	bytes = 0;
 	if (specifier == '%' && ++bytes)
-	{
 		ft_putchar_fd('%', 1);
-	}
-	else if (specifier == 'd')
-	{
-		bytes += ft_putnbr_fd(va_arg(args, int), 1);
-	}
+	else if (specifier == 'd' || specifier == 'i')
+		bytes = ft_putnbr_fd(va_arg(args, int), 1);
+	else if (specifier == 'u')
+		bytes = ft_putunbr_fd(va_arg(args, int), 1);
 	else if (specifier == 'c' && ++bytes)
-	{
 		ft_putchar_fd(va_arg(args, int), 1);
-	}
+	else if (specifier == 's')
+		bytes = ft_putstr_fd(va_arg(args, char *), 1);
+	else if (specifier == 'x')
+		bytes = ft_putnbr_base(va_arg(args, int), "0123456789abcdef", 16);
+	else if (specifier == 'X')
+		bytes = ft_putnbr_base(va_arg(args, int), "0123456789ABCDEF", 16);
 	*format += 2;
 	return (bytes);
 }
@@ -63,16 +65,16 @@ int	ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	int		val;
+	void	*val;
 	char	*format;
 	size_t	bytes;
 
-	val = 69;
-	format = "Value is '%c'\n";
-	bytes = ft_printf(format, NULL);
+	val = (int *)1337;
+	format = "Value is '%x'\n";
+	bytes = ft_printf(format, val);
 	printf("Wrote %zu bytes\n", bytes);
 	printf("------------------\n");
-	bytes = printf(format, NULL);
+	bytes = printf(format, val);
 	printf("Wrote %zu bytes\n", bytes);
 	return (0);
 }
