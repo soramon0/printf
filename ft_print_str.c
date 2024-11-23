@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: klaayoun <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 13:32:08 by klaayoun          #+#    #+#             */
-/*   Updated: 2024/11/22 13:32:10 by klaayoun         ###   ########.fr       */
+/*   Created: 2024/11/22 13:41:52 by klaayoun          #+#    #+#             */
+/*   Updated: 2024/11/22 13:41:54 by klaayoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "printf.h"
 
-# include "stdarg.h"
-# include <unistd.h>
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
+}
 
-int		ft_printf(const char *format, ...);
-char	*ft_strchr(const char *s, int c);
-void	ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_putnbr(int n);
-int		ft_putunbr(unsigned int n);
-int		ft_putnbr_hex(long long num, int casing);
-int		ft_putnbr_base(long long n, char *base, int baselen, int casing);
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
-#endif
+int	ft_putstr(char *s)
+{
+	int	i;
+
+	if (!s)
+		s = "(null)";
+	i = 0;
+	while (s[i])
+		i++;
+	write(1, s, i);
+	return (i);
+}
