@@ -20,13 +20,13 @@ static int	process(va_list args, char **format, char specifier)
 
 	bytes = 0;
 	if (specifier == '%' && ++bytes)
-		ft_putchar('%');
+		ft_putchr('%');
 	else if (specifier == 'd' || specifier == 'i')
 		bytes = ft_putnbr(va_arg(args, int));
 	else if (specifier == 'u')
 		bytes = ft_putunbr(va_arg(args, int));
 	else if (specifier == 'c' && ++bytes)
-		ft_putchar(va_arg(args, int));
+		ft_putchr(va_arg(args, int));
 	else if (specifier == 's')
 		bytes = ft_putstr(va_arg(args, char *));
 	else if (specifier == 'x' || specifier == 'X')
@@ -75,8 +75,8 @@ int	main(void)
 	char	*format;
 	size_t	bytes;
 
-	val = (int *)-1337;
-	format = "Value is '%u'\n";
+	val = (int *)1337;
+	format = "Value is '%d'\n";
 	bytes = ft_printf(format, val);
 	printf("Wrote %zu bytes\n", bytes);
 	printf("------------------\n");

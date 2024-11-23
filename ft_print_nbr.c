@@ -15,12 +15,12 @@
 static void	ft_putchr_case(char c, int casing)
 {
 	if (c >= 'a' && c <= 'z' && casing)
-		ft_putchar(c - 32);
+		ft_putchr(c - 32);
 	else
-		ft_putchar(c);
+		ft_putchr(c);
 }
 
-int	ft_putnbr_base(long long num, char *base, int baselen, int casing)
+static int	ft_putnbr_base(long long num, char *base, int baselen, int casing)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	ft_putnbr_base(long long num, char *base, int baselen, int casing)
 		return (ft_putstr("(nil)"));
 	if (num < 0)
 	{
-		ft_putchar('-');
+		ft_putchr('-');
 		return (1 + ft_putnbr_base(num * -1, base, baselen, casing));
 	}
 	if (num >= baselen)
