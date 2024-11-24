@@ -1,22 +1,22 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIB_NAME = libftprintf.a
+NAME = libftprintf.a
 SRC = ft_printf.c ft_print_str.c ft_print_nbr.c
 OBJ = $(SRC:.c=.o)
 
-all: $(LIB_NAME)
+all: $(NAME)
 
 %.o: %.c
 	$(CC) -c $(FLAGS) $< -o $@
 
-$(LIB_NAME): $(OBJ)
-	ar rcs $(LIB_NAME) $(OBJ)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(LIB_NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
