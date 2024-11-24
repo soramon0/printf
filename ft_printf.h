@@ -18,10 +18,11 @@
 
 int		ft_printf(const char *format, ...);
 char	*ft_strchr(const char *s, int c);
-void	ft_putchr(char c);
+int		ft_putchr(char c);
 int		ft_putstr(char *s);
 int		ft_putnbr(int n);
 int		ft_putunbr(unsigned int n);
-int		ft_putnbr_hex(long long num, int casing, int nillable);
+int		ft_putnbr_hex(unsigned int num, int uppercase);
+int		ft_putptr(void *num);
 
 #endif

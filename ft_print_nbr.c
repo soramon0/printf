@@ -17,39 +17,61 @@ static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable)
 	int	i;
 
 	i = 1;
-	if (num == 0 && nillable)
-		return (ft_putstr("(nil)"));
 	if (num < 0)
-	{
-		ft_putchr('-');
-		return (1 + ft_putnbr_base(num * -1, base, baselen, nillable));
-	}
+		return (ft_putchr('-') + ft_putnbr_base(-num, base, baselen, nillable));
 	if (num >= baselen)
 	{
 		i += ft_putnbr_base(num / baselen, base, baselen, nillable);
-		ft_putchr(base[num % baselen]);
-		return (i);
+		return (i + ft_putchr(base[num % baselen]));
 	}
 	else
-	{
-		ft_putchr(base[num]);
-		return (1);
-	}
+		return (ft_putchr(base[num]));
 }
 
-int	ft_putnbr_hex(long long num, int casing, int nillable)
+int	ft_putnbr_hex(unsigned int num, int uppercase)
 {
-	if (casing)
-		return (ft_putnbr_base(num, "0123456789ABCDEF", 16, nillable));
-	return (ft_putnbr_base(num, "0123456789abcdef", 16, nillable));
+	int		i;
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	i = 0;
+	if (uppercase == 1)
+		hex = "0123456789ABCDEF";
+	if (num >= 16)
+	{
+		i += ft_putnbr_hex(num / 16, uppercase);
+		return (i + ft_putchr(hex[num % 16]));
+	}
+	else
+		return (ft_putchr(hex[num]));
+}
+
+int	ft_putptr(void *num)
+{
+	if (num == NULL)
+		return (ft_putstr("(nil)"));
+	return (ft_putstr("0x") + ft_putnbr_hex((unsigned long)num, 0));
 }
 
 int	ft_putnbr(int n)
 {
-	return (ft_putnbr_base(n, "0123456789", 10, 0));
+	int		i;
+	long	num;
+
+	i = 1;
+	num = n;
+	if (num < 0)
+		return (ft_putchr('-') + ft_putnbr(-num));
+	if (num >= 10)
+	{
+		i += ft_putnbr(num / 10);
+		return (i + ft_putchr(num % 10 + '0'));
+	}
+	else
+		return (ft_putchr(num + '0'));
 }
 
 int	ft_putunbr(unsigned int n)
 {
-	return (ft_putnbr_base(n, "0123456789", 10, 0));
+	return (ft_putnbr(n));
 }

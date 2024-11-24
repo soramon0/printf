@@ -21,9 +21,9 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	ft_putchr(char c)
+int	ft_putchr(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
 int	ft_putstr(char *s)

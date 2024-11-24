@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <limits.h>
 #include <stdio.h>
 
 static int	process(va_list args, char **format, char specifier)
@@ -30,14 +31,9 @@ static int	process(va_list args, char **format, char specifier)
 	else if (specifier == 's')
 		bytes = ft_putstr(va_arg(args, char *));
 	else if (specifier == 'x' || specifier == 'X')
-		bytes = ft_putnbr_hex(va_arg(args, int), specifier == 'X', 0);
+		bytes = ft_putnbr_hex(va_arg(args, unsigned int), specifier == 'X');
 	else if (specifier == 'p')
-	{
-		data = (long *)va_arg(args, int *);
-		if (data != NULL)
-			bytes += ft_putstr("0x");
-		bytes += ft_putnbr_hex((long long)data, 0, 1);
-	}
+		bytes = ft_putptr(va_arg(args, void *));
 	*format += 2;
 	return (bytes);
 }
@@ -75,7 +71,8 @@ int	ft_printf(const char *format, ...)
 // 	char	*format;
 // 	size_t	bytes;
 //
-// 	val = 0;
+// 	val = (int *)-10;
+// 	bytes = 0;
 // 	format = "Value is '%x'\n";
 // 	bytes = ft_printf(format, val);
 // 	printf("Wrote %zu bytes\n", bytes);
