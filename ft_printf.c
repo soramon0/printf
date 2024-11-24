@@ -14,7 +14,7 @@
 
 static int	process(va_list args, char **format, char specifier)
 {
-	int		bytes;
+	int	bytes;
 
 	bytes = 0;
 	if (specifier == '%')
