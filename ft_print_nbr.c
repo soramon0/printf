@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr_hex(unsigned int num, int uppercase)
+int	ft_putnbr_hex(unsigned long num, int uppercase)
 {
 	char	*hex;
 
