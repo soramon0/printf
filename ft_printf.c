@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
-#include <stdio.h>
 
 static int	process(va_list args, char **format, char specifier)
 {
