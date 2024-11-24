@@ -61,8 +61,8 @@ int	ft_putnbr(int n)
 	i = 1;
 	num = n;
 	if (num < 0)
-		return (ft_putchr('-') + ft_putnbr(-num));
-	if (num >= 10)
+		return (ft_putchr('-') + ft_putnbr(num * -1));
+	if (num > 9)
 	{
 		i += ft_putnbr(num / 10);
 		return (i + ft_putchr(num % 10 + '0'));
