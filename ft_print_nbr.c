@@ -45,7 +45,10 @@ int	ft_putnbr(int n)
 		num *= -1;
 	}
 	if (num > 9)
-		return (ft_putnbr(num / 10) + ft_putchr(num % 10 + '0'));
+	{
+		i += ft_putnbr(num / 10);
+		return (i + ft_putchr(num % 10 + '0'));
+	}
 	else
 		return (i + ft_putchr(num + '0'));
 }

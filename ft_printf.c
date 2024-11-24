@@ -71,7 +71,7 @@ int	main(void)
 	char	*format;
 	size_t	bytes;
 
-	val = (int *)-1;
+	val = (int *)-10;
 	bytes = 0;
 	format = "Value is '%d'\n";
 	bytes = ft_printf(format, val);
