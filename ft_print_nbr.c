@@ -30,18 +30,13 @@ static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable)
 
 int	ft_putnbr_hex(unsigned int num, int uppercase)
 {
-	int		i;
 	char	*hex;
 
 	hex = "0123456789abcdef";
-	i = 0;
 	if (uppercase == 1)
 		hex = "0123456789ABCDEF";
-	if (num >= 16)
-	{
-		i += ft_putnbr_hex(num / 16, uppercase);
-		return (i + ft_putchr(hex[num % 16]));
-	}
+	if (num > 15)
+		return (ft_putnbr_hex(num / 16, uppercase) + ft_putchr(hex[num % 16]));
 	else
 		return (ft_putchr(hex[num]));
 }
@@ -55,18 +50,13 @@ int	ft_putptr(void *num)
 
 int	ft_putnbr(int n)
 {
-	int		i;
 	long	num;
 
-	i = 1;
 	num = n;
 	if (num < 0)
 		return (ft_putchr('-') + ft_putnbr(num * -1));
 	if (num > 9)
-	{
-		i += ft_putnbr(num / 10);
-		return (i + ft_putchr(num % 10 + '0'));
-	}
+		return (ft_putnbr(num / 10) + ft_putchr(num % 10 + '0'));
 	else
 		return (ft_putchr(num + '0'));
 }
