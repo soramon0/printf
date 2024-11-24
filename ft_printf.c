@@ -70,13 +70,13 @@ int	ft_printf(const char *format, ...)
 // 	char	*format;
 // 	size_t	bytes;
 //
-// 	val = (int *)-10;
+// 	val = (int *)0;
 // 	bytes = 0;
 // 	format = "Value is '%p'\n";
-// 	bytes = ft_printf(format, INT_MIN);
+// 	bytes = ft_printf(format, 0);
 // 	printf("Wrote %zu bytes\n", bytes);
 // 	printf("------------------\n");
-// 	bytes = printf(format, INT_MIN);
+// 	bytes = printf(format, 0);
 // 	printf("Wrote %zu bytes\n", bytes);
 // 	return (0);
 // }
