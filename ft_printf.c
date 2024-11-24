@@ -73,7 +73,7 @@ int	ft_printf(const char *format, ...)
 //
 // 	val = (int *)-10;
 // 	bytes = 0;
-// 	format = "Value is '%d'\n";
+// 	format = "Value is '%u'\n";
 // 	bytes = ft_printf(format, val);
 // 	printf("Wrote %zu bytes\n", bytes);
 // 	printf("------------------\n");

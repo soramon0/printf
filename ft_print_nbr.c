@@ -32,6 +32,14 @@ int	ft_putptr(void *num)
 	return (ft_putstr("0x") + ft_putnbr_hex((unsigned long)num, 0));
 }
 
+int	ft_putunbr(unsigned int n)
+{
+	if (n > 9)
+		return (ft_putunbr(n / 10) + ft_putchr(n % 10 + '0'));
+	else
+		return (ft_putchr(n + '0'));
+}
+
 int	ft_putnbr(int n)
 {
 	long	num;
@@ -51,9 +59,4 @@ int	ft_putnbr(int n)
 	}
 	else
 		return (i + ft_putchr(num + '0'));
-}
-
-int	ft_putunbr(unsigned int n)
-{
-	return (ft_putnbr(n));
 }
