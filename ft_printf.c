@@ -30,7 +30,7 @@ static int	process(va_list args, char **format, char specifier)
 	else if (specifier == 'u')
 		bytes = ft_putunbr(va_arg(args, int));
 	else if (specifier == 'x' || specifier == 'X')
-		bytes = ft_putnbr_hex(va_arg(args, int), specifier == 'X');
+		bytes = ft_putnbr_hex(va_arg(args, unsigned int), specifier == 'X');
 	else if (specifier == 'p')
 		bytes = ft_putptr(va_arg(args, void *));
 	*format += 2;
