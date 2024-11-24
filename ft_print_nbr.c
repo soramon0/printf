@@ -12,22 +12,6 @@
 
 #include "ft_printf.h"
 
-static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable)
-{
-	int	i;
-
-	i = 1;
-	if (num < 0)
-		return (ft_putchr('-') + ft_putnbr_base(-num, base, baselen, nillable));
-	if (num >= baselen)
-	{
-		i += ft_putnbr_base(num / baselen, base, baselen, nillable);
-		return (i + ft_putchr(base[num % baselen]));
-	}
-	else
-		return (ft_putchr(base[num]));
-}
-
 int	ft_putnbr_hex(unsigned int num, int uppercase)
 {
 	char	*hex;
