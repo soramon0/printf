@@ -12,15 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_putchr_case(char c, int casing)
-{
-	if (casing && c >= 'a' && c <= 'z')
-		ft_putchr(c - 32);
-	else
-		ft_putchr(c);
-}
-
-static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable, int casing)
+static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable)
 {
 	int	i;
 
@@ -30,32 +22,34 @@ static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable, 
 	if (num < 0)
 	{
 		ft_putchr('-');
-		return (1 + ft_putnbr_base(num * -1, base, baselen, nillable, casing));
+		return (1 + ft_putnbr_base(num * -1, base, baselen, nillable));
 	}
 	if (num >= baselen)
 	{
-		i += ft_putnbr_base(num / baselen, base, baselen, nillable, casing);
-		ft_putchr_case(base[num % baselen], casing);
+		i += ft_putnbr_base(num / baselen, base, baselen, nillable);
+		ft_putchr(base[num % baselen]);
 		return (i);
 	}
 	else
 	{
-		ft_putchr_case(base[num], casing);
+		ft_putchr(base[num]);
 		return (1);
 	}
 }
 
 int	ft_putnbr_hex(long long num, int casing)
 {
-	return (ft_putnbr_base(num, "0123456789abcdef", 16, 1, casing));
+	if (casing)
+		return (ft_putnbr_base(num, "0123456789ABCDEF", 16, 1));
+	return (ft_putnbr_base(num, "0123456789abcdef", 16, 1));
 }
 
 int	ft_putnbr(int n)
 {
-	return (ft_putnbr_base(n, "0123456789", 10, 0, 0));
+	return (ft_putnbr_base(n, "0123456789", 10, 0));
 }
 
 int	ft_putunbr(unsigned int n)
 {
-	return (ft_putnbr_base(n, "0123456789", 10, 0, 0));
+	return (ft_putnbr_base(n, "0123456789", 10, 0));
 }
