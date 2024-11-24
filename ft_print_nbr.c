@@ -51,12 +51,20 @@ int	ft_putptr(void *num)
 int	ft_putnbr(int n)
 {
 	long	num;
+	int		i;
 
 	num = n;
+	i = 0;
 	if (num < 0)
-		return (ft_putchr('-') + ft_putnbr(num * -1));
+	{
+		i += ft_putchr('-');
+		num *= -1;
+	}
 	if (num > 9)
-		return (ft_putnbr(num / 10) + ft_putchr(num % 10 + '0'));
+	{
+		i += ft_putnbr(num / 10);
+		return (i + ft_putchr(num % 10 + '0'));
+	}
 	else
 		return (ft_putchr(num + '0'));
 }
