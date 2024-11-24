@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	process(va_list args, char **format, char specifier)
 {
@@ -67,18 +68,18 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (bytes);
 }
-// int	main(void)
-// {
-// 	void	*val;
-// 	char	*format;
-// 	size_t	bytes;
-//
-// 	val = (int *)1337;
-// 	format = "Value is '%d'\n";
-// 	bytes = ft_printf(format, val);
-// 	printf("Wrote %zu bytes\n", bytes);
-// 	printf("------------------\n");
-// 	bytes = printf(format, val);
-// 	printf("Wrote %zu bytes\n", bytes);
-// 	return (0);
-// }
+int	main(void)
+{
+	void	*val;
+	char	*format;
+	size_t	bytes;
+
+	val = 0;
+	format = "Value is '%d'\n";
+	bytes = ft_printf(format, val);
+	printf("Wrote %zu bytes\n", bytes);
+	printf("------------------\n");
+	bytes = printf(format, val);
+	printf("Wrote %zu bytes\n", bytes);
+	return (0);
+}

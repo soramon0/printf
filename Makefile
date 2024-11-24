@@ -15,9 +15,14 @@ $(NAME): $(OBJ)
 clean:
 	rm -f $(OBJ)
 
+run: $(NAME)
+	@cc libftprintf.a
+	@./a.out
+	@rm a.out $(NAME) $(OBJ)
+
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run

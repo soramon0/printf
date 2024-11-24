@@ -14,27 +14,27 @@
 
 static void	ft_putchr_case(char c, int casing)
 {
-	if (c >= 'a' && c <= 'z' && casing)
+	if (casing && c >= 'a' && c <= 'z')
 		ft_putchr(c - 32);
 	else
 		ft_putchr(c);
 }
 
-static int	ft_putnbr_base(long long num, char *base, int baselen, int casing)
+static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable, int casing)
 {
 	int	i;
 
 	i = 1;
-	if (num == 0)
+	if (num == 0 && nillable)
 		return (ft_putstr("(nil)"));
 	if (num < 0)
 	{
 		ft_putchr('-');
-		return (1 + ft_putnbr_base(num * -1, base, baselen, casing));
+		return (1 + ft_putnbr_base(num * -1, base, baselen, nillable, casing));
 	}
 	if (num >= baselen)
 	{
-		i += ft_putnbr_base(num / baselen, base, baselen, casing);
+		i += ft_putnbr_base(num / baselen, base, baselen, nillable, casing);
 		ft_putchr_case(base[num % baselen], casing);
 		return (i);
 	}
@@ -47,15 +47,15 @@ static int	ft_putnbr_base(long long num, char *base, int baselen, int casing)
 
 int	ft_putnbr_hex(long long num, int casing)
 {
-	return (ft_putnbr_base(num, "0123456789abcdef", 16, casing));
+	return (ft_putnbr_base(num, "0123456789abcdef", 16, 1, casing));
 }
 
 int	ft_putnbr(int n)
 {
-	return (ft_putnbr_base(n, "0123456789", 10, 0));
+	return (ft_putnbr_base(n, "0123456789", 10, 0, 0));
 }
 
 int	ft_putunbr(unsigned int n)
 {
-	return (ft_putnbr_base(n, "0123456789", 10, 0));
+	return (ft_putnbr_base(n, "0123456789", 10, 0, 0));
 }
