@@ -30,13 +30,13 @@ static int	process(va_list args, char **format, char specifier)
 	else if (specifier == 's')
 		bytes = ft_putstr(va_arg(args, char *));
 	else if (specifier == 'x' || specifier == 'X')
-		bytes = ft_putnbr_hex(va_arg(args, int), specifier == 'X');
+		bytes = ft_putnbr_hex(va_arg(args, int), specifier == 'X', 0);
 	else if (specifier == 'p')
 	{
 		data = (long *)va_arg(args, int *);
 		if (data != NULL)
 			bytes += ft_putstr("0x");
-		bytes += ft_putnbr_hex((long long)data, 0);
+		bytes += ft_putnbr_hex((long long)data, 0, 1);
 	}
 	*format += 2;
 	return (bytes);
@@ -76,11 +76,11 @@ int	ft_printf(const char *format, ...)
 // 	size_t	bytes;
 //
 // 	val = 0;
-// 	format = "Value is '%p'\n";
-// 	bytes = ft_printf(format, &val);
+// 	format = "Value is '%x'\n";
+// 	bytes = ft_printf(format, val);
 // 	printf("Wrote %zu bytes\n", bytes);
 // 	printf("------------------\n");
-// 	bytes = printf(format, &val);
+// 	bytes = printf(format, val);
 // 	printf("Wrote %zu bytes\n", bytes);
 // 	return (0);
 // }

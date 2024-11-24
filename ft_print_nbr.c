@@ -37,11 +37,11 @@ static int	ft_putnbr_base(long long num, char *base, int baselen, int nillable)
 	}
 }
 
-int	ft_putnbr_hex(long long num, int casing)
+int	ft_putnbr_hex(long long num, int casing, int nillable)
 {
 	if (casing)
-		return (ft_putnbr_base(num, "0123456789ABCDEF", 16, 1));
-	return (ft_putnbr_base(num, "0123456789abcdef", 16, 1));
+		return (ft_putnbr_base(num, "0123456789ABCDEF", 16, nillable));
+	return (ft_putnbr_base(num, "0123456789abcdef", 16, nillable));
 }
 
 int	ft_putnbr(int n)
