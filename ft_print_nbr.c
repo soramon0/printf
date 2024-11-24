@@ -61,12 +61,9 @@ int	ft_putnbr(int n)
 		num *= -1;
 	}
 	if (num > 9)
-	{
-		i += ft_putnbr(num / 10);
-		return (i + ft_putchr(num % 10 + '0'));
-	}
+		return (ft_putnbr(num / 10) + ft_putchr(num % 10 + '0'));
 	else
-		return (ft_putchr(num + '0'));
+		return (i + ft_putchr(num + '0'));
 }
 
 int	ft_putunbr(unsigned int n)

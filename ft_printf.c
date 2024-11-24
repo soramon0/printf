@@ -65,19 +65,19 @@ int	ft_printf(const char *format, ...)
 	return (bytes);
 }
 
-// int	main(void)
-// {
-// 	void	*val;
-// 	char	*format;
-// 	size_t	bytes;
-//
-// 	val = (int *)INT_MIN;
-// 	bytes = 0;
-// 	format = "Value is '%d'\n";
-// 	bytes = ft_printf(format, INT_MIN);
-// 	printf("Wrote %zu bytes\n", bytes);
-// 	printf("------------------\n");
-// 	bytes = printf(format, INT_MIN);
-// 	printf("Wrote %zu bytes\n", bytes);
-// 	return (0);
-// }
+int	main(void)
+{
+	void	*val;
+	char	*format;
+	size_t	bytes;
+
+	val = (int *)-1;
+	bytes = 0;
+	format = "Value is '%d'\n";
+	bytes = ft_printf(format, val);
+	printf("Wrote %zu bytes\n", bytes);
+	printf("------------------\n");
+	bytes = printf(format, val);
+	printf("Wrote %zu bytes\n", bytes);
+	return (0);
+}
