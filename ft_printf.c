@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	process(va_list args, char **format, char specifier)
 {
@@ -42,6 +43,8 @@ int	ft_printf(const char *format, ...)
 	char	*specifier;
 	char	*s;
 
+	if (!format)
+		return (-1);
 	bytes = 0;
 	s = (char *)format;
 	va_start(args, format);
@@ -66,15 +69,15 @@ int	ft_printf(const char *format, ...)
 // {
 // 	void	*val;
 // 	char	*format;
-// 	size_t	bytes;
+// 	int bytes;
 //
 // 	val = (int *)0;
 // 	bytes = 0;
 // 	format = "Value is '%p'\n";
 // 	bytes = ft_printf(format, 0);
-// 	printf("Wrote %zu bytes\n", bytes);
+// 	printf("Wrote %d bytes\n", bytes);
 // 	printf("------------------\n");
-// 	bytes = printf(format, 0);
-// 	printf("Wrote %zu bytes\n", bytes);
+// 	bytes = printf(format);
+// 	printf("Wrote %d bytes\n", bytes);
 // 	return (0);
 // }
