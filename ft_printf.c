@@ -64,23 +64,3 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (bytes);
 }
-
-int	main(void)
-{
-	void	*val;
-	char	*format;
-	int bytes;
-
-	val = (int *)0;
-	bytes = 0;
-	format = "";
-	bytes = ft_printf(format, 0);
-	printf("Wrote %d bytes\n", bytes);
-	printf("------------------\n");
-	bytes = printf(format, val);
-	printf("Wrote %d bytes\n", bytes);
-	printf("%%%%%%%\n");
-	printf("\n");
-	ft_printf("%%%%%%%\n");
-	return (0);
-}
